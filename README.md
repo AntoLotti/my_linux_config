@@ -1,2 +1,2 @@
 # my_linux_config
-My personal devian base Linux distro configuration
+My personal debian base Linux distro configuration
