@@ -21,6 +21,11 @@ sudo apt-get install unzip
 echo -e "${GREEN}Instalando herramientas de desarrollo===================${NC}"
 sudo apt-get install git flex bison gperf ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0 -y
 
+# ====== Configurando Git ======
+
+git config --global user.email "antoniolottivillar@gmail.com"
+
+git config --global user.name "AntoLotti"
 
 # ====== Herramientas de Desarrollo ======
 echo -e "${GREEN}Instalando make========================================${NC}"
