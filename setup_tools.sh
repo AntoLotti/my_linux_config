@@ -50,7 +50,7 @@ echo -e "${GREEN}Instalando Doxygen=====================================${NC}"
 sudo apt install doxygen -y
 
 echo -e "${GREEN}Instalando Valgrind====================================${NC}"
-sudo apt install valgrind -y
+#sudo apt install valgrind -y
 
 
 # ====== Fin del Script ======

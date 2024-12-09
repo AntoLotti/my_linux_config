@@ -12,7 +12,6 @@ SRC_DIR=$(dirname "$0")
 
 # Repo Config path
 SRC_CONF_PATH=$SRC_DIR/.config
-
 # System ./config path
 DST_CONF_PATH=$HOME/.config
 
@@ -26,9 +25,13 @@ DST_BASH_ALIASES_PATH=$HOME
 
 # Repo StarShip files path
 SRC_STARSHIP_CONF_PATH=$SRC_CONF_PATH/starship
-
 # System StarShip files path
 DST_STARSHIP_CONF_PATH=$DST_CONF_PATH
+
+# Repo I3 configuration path
+SRC_I3_PATH=$SRC_CONF_PATH/i3
+# System I3 configuration path
+DST_I3_PATH=$DST_CONF_PATH/i3
 
 # ====== BASH CONFIG ============================ #
 echo -e "${GREEN}Setup BASH Configuration ======================================${NC}"

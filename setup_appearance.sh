@@ -11,6 +11,17 @@ sudo add-apt-repository universe
 echo -e "${GREEN}Actualizando sistema====================================${NC}"
 sudo apt update && sudo apt upgrade -y
 
+# ====== Firmware ===============
+echo -e "${GREEN}=========== UPDATING FIRMWARE =========================${NC}"
+echo -e "${GREEN}Instalando fwupd ======================================${NC}"
+sudo apt install fwupd 
+sudo service fwupd start 
+sudo fwupdmgr refresh
+sudo fwupdmgr update
+
+sudo apt install firmware-linux
+sudo apt install firmware-misc-nonfree
+
 # ====== Paquetes Básicos ======
 echo -e "${GREEN}Instalando Snap ========================================${NC}"
 sudo apt-get install snapd -y
@@ -26,7 +37,7 @@ sudo apt-get install curl -y
 
 # localizador de paquetes huerfanos
 echo -e "${GREEN}Instalando Deborphan ==================================${NC}"
-sudo apt install deborphan
+sudo apt install deborphan -y
 
 # ====== Python ====================
 echo -e "${GREEN}Instalando Python =====================================${NC}"
@@ -38,18 +49,24 @@ sudo apt install python3-pip -y
 echo -e "${GREEN}Instalando Python3-venv ===============================${NC}"
 sudo apt install python3-venv -y
 
-# ====== Firmware ==================
 
-echo -e "${GREEN}=========== UPDATING FIRMWARE =========================${NC}"
+# ===== Instalando Entorno Grafico ======
 
-echo -e "${GREEN}Instalando fwupd ======================================${NC}"
-sudo apt install fwupd
+echo -e "${GREEN} Instalando Servicio X ================================${NC}"
+sudo apt install xorg
 
-sudo service fwupd start
+echo -e "${GREEN} Instalando lightdm ================================${NC}"
+sudo apt install lightdm
 
-sudo fwupdmgr refresh
+echo -e "${GREEN} Instalando i3 ========================================${NC}"
+curl https://baltocdn.com/i3-window-manager/signing.asc | sudo apt-key add -
+sudo apt install apt-transport-https --yes
+echo "deb https://baltocdn.com/i3-window-manager/i3/i3-autobuild/ all main" | sudo tee /etc/apt/sources.list.d/i3-autobuild.list
+sudo apt update
+sudo apt install i3
 
-sudo fwupdmgr update
-
+# ===== REEBOOT ====================
+echo -e "${GREEN} Reiniciando sistema ==================================${NC}"
+sudo reboot 
 
 
