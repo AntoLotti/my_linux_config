@@ -2,21 +2,27 @@
 
 # Colores para el terminal
 GREEN='\033[0;32m'
+RED='\033[0;31m'
 NC='\033[0m' # Sin color
 
 
 # ====== Herramientas Básicas ======
-echo -e "${GREEN}Instalando wget========================================${NC}"
+
+sudo apt install build-essential -y
+
 sudo apt-get install wget -y
 
-sudo apt install imagemagick
+sudo apt install imagemagick -y
 
-sudo apt install graphicsmagick
+sudo apt install graphicsmagick -y
 
-sudo apt install mailutils
+sudo apt install mailutils -y
 
-echo -e "${GREEN}Instalando unzip=======================================${NC}"
-sudo apt-get install unzip
+sudo apt install unzip zip tar gzip -y
+
+sudo apt install bash-completion -y
+
+sudo apt install man-db manpages -y
 
 echo -e "${GREEN}Instalando herramientas de desarrollo===================${NC}"
 sudo apt-get install git flex bison gperf ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0 -y

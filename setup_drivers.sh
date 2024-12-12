@@ -11,15 +11,16 @@ NC='\033[0m' # Sin color
 SRC_DIR_PATH=$(dirname "$0")
 
 # Repo source path
-SRC_SRC_PATH=$SRC_DIR_PATH/source
-
+SRC_SRC_PATH=$SRC_DIR_PATH/others
 
 # System sources.list
 DST_SRC_PATH=/etc/apt
 
 
 # ====== Start Of Script ======
-echo -e "${GREEN}===================== UPDATING SYSTEM ====================================${NC}"
+echo -e "${GREEN}==========================================================================${NC}"
+echo -e "${GREEN}=========================== UPDATING SYSTEM ==============================${NC}"
+echo -e "${GREEN}==========================================================================${NC}"
 
 # ====== Repositories ===========
 echo -e "${GREEN}========== Adding Repositories =========${NC}"
@@ -32,15 +33,66 @@ sudo apt update && sudo apt upgrade -y
 # ====== Firmware ===============
 echo -e "${GREEN}===================== UPDATING FIRMWARE ==================================${NC}"
 
-sudo apt install fwupd 
-sudo service fwupd start 
-sudo fwupdmgr refresh
-sudo fwupdmgr update
+sudo apt install fwupd -y
+sudo service fwupd start -y
+sudo fwupdmgr refresh -y
+sudo fwupdmgr update -y
 
-sudo apt install firmware-linux
-sudo apt install firmware-misc-nonfree
+sudo apt install firmware-linux -y
+sudo apt install firmware-misc-nonfree -y
+
+sudo apt install systemd-sysv -y
+
+sudo apt install acpi -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+sudo apt acpid -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+sudo apt brightnessctl -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+sudo apt pulseaudio-utils -y 
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+sudo apt pavucontrol -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+# ====== Terminal ===============
+echo -e "${GREEN}Instalando Terminator==================================${NC}"
+sudo apt install terminator -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
 
 # ===== REEBOOT ====================
-echo -e "${GREEN} ===================== REEBOOTING SYSTEM =================================${NC}"
+echo -e "${RED}===================== REEBOOTING SYSTEM =================================${NC}"
+
+echo -e "${GREEN}==========================================================================${NC}"
+echo -e "${GREEN}============================ UPDATING SYSTEM =============================${NC}"
+echo -e "${GREEN}==========================================================================${NC}"
+
 sudo reboot 
 

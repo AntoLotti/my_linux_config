@@ -10,14 +10,26 @@
 ## Branches
 
 
+## Folders
+
+- setup:
+    - Folder with all the files configuration 
+- etc
+    - Linux `etc` configuration
+- .config
+    - Linux **user** `.config` folder
+- others
+    - others files used into the configuration process
+- sources
+    - icons and wallpapers
 
 ## Files Of The Repo:
 
 - file that that do all the setup automaticly			--> `setup.sh`
-
 - file that install all the basic drivers 				--> `setup_drivers.sh`
+
 - file that install all the basic Packages				--> `setup_packages.sh`
-- file that install all visual services basics 			--> `setup_desktop.sh`
+- file that install all visual services basics 			--> `setup_graphic.sh`
 - file that install all the basic aplications   		--> `setup_apps.sh`
 - file that install all the basic tools         		--> `setup_tools.sh`
 - file that setup `.config/` configuration      		--> `setup_config.sh`

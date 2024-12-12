@@ -12,15 +12,21 @@ echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] http
 sudo apt update
 sudo apt install brave-browser -y
 
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
 echo -e "${GREEN}Instalando LibreOffice=================================${NC}"
 sudo apt install libreoffice -y
 
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
 echo -e "${GREEN}Instalando Spotify=====================================${NC}"
 sudo snap install spotify
-
-# ====== Terminal ======
-echo -e "${GREEN}Instalando Terminator==================================${NC}"
-sudo apt install terminator -y
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
