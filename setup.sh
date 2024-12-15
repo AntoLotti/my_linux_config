@@ -18,21 +18,43 @@ echo -e "${GREEN}===============================================================
 echo -e "${GREEN}=================== SYSTEM CONFIGURATION =================================${NC}"
 echo -e "${GREEN}==========================================================================${NC}"
 
+# ===== GIT ========================================
+sudo apt install git -y
+
+git config --global user.email "antoniolottivillar@gmail.com"
+
+git config --global user.name "AntoLotti"
+
+sudo mkdir $HOME/.ssh
+
+sudo ssh-keygen -t ed25519 -C "antoniolottivillar@gmail.com"
+
+ssh-add ~/.ssh/id_rsa
+
+# ====== Linux Format ==============================
+sudo dos2unix $SRC_FILES_PATH/setup_packages.sh       # Packages
+sudo dos2unix $SRC_FILES_PATH/setup_graphic.sh        # Graphic Env
+sudo dos2unix $SRC_FILES_PATH/setup_apps.sh           # Apps
+sudo dos2unix $SRC_FILES_PATH/setup_tools.sh          # Tools
+sudo dos2unix $SRC_FILES_PATH/setup_config.sh         # Configuration
+sudo dos2unix $SRC_FILES_PATH/setup_appearance.sh     # Appearence
+
 # ====== Set execute permission on the scripts ===== 
-chmod +x $SRC_FILES_PATH/setup_packages.sh       # Packages
-chmod +x $SRC_FILES_PATH/setup_graphic.sh        # Graphic Env
-chmod +x $SRC_FILES_PATH/setup_apps.sh           # Apps
-chmod +x $SRC_FILES_PATH/setup_tools.sh          # Tools
-chmod +x $SRC_FILES_PATH/setup_config.sh         # Configuration
-chmod +x $SRC_FILES_PATH/setup_appearance.sh     # Appearence
+sudo chmod +x $SRC_FILES_PATH/setup_packages.sh       # Packages
+sudo chmod +x $SRC_FILES_PATH/setup_graphic.sh        # Graphic Env
+sudo chmod +x $SRC_FILES_PATH/setup_apps.sh           # Apps
+sudo chmod +x $SRC_FILES_PATH/setup_tools.sh          # Tools
+#sudo chmod +x $SRC_FILES_PATH/setup_config.sh         # Configuration
+#sudo chmod +x $SRC_FILES_PATH/setup_appearance.sh     # Appearence
 
 # ====== Setup =====================================
 sudo sh $SRC_FILES_PATH/setup_packages.sh       # Packages
 sudo sh $SRC_FILES_PATH/setup_graphic.sh        # Graphic Env
 sudo sh $SRC_FILES_PATH/setup_apps.sh           # Apps
 sudo sh $SRC_FILES_PATH/setup_tools.sh          # Tools
-sudo sh $SRC_FILES_PATH/setup_config.sh         # Configuration
-sudo sh $SRC_FILES_PATH/setup_appearance.sh     # Appearence
+#sudo sh $SRC_FILES_PATH/setup_config.sh         # Configuration
+#sudo sh $SRC_FILES_PATH/setup_appearance.sh     # Appearence
+
 
 # ===== REEBOOT ====================
 echo -e "${RED}===================== REEBOOTING SYSTEM =================================${NC}"

@@ -44,6 +44,5 @@ fi
 
 # ====== Herramientas de Terminal ======
 
-echo -e "${GREEN}Instalando tree========================================${NC}"
-sudo apt install tree
+
 

@@ -5,58 +5,45 @@ GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # Sin color
 
+# ====== Basic Tools ===========
 
-# ====== Herramientas Básicas ======
+sudo apt-get install imagemagick -y
 
-sudo apt install build-essential -y
+sudo apt-get install graphicsmagick -y
 
-sudo apt-get install wget -y
+sudo apt-get install mailutils -y
 
-sudo apt install imagemagick -y
+sudo apt-get install bash-completion -y
 
-sudo apt install graphicsmagick -y
+sudo apt-get install man-db manpages -y
 
-sudo apt install mailutils -y
-
-sudo apt install unzip zip tar gzip -y
-
-sudo apt install bash-completion -y
-
-sudo apt install man-db manpages -y
-
-echo -e "${GREEN}Instalando herramientas de desarrollo===================${NC}"
+echo -e "${GREEN}===== Installing Development Tools =====${NC}"
 sudo apt-get install git flex bison gperf ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0 -y
 
-# ====== Configurando Git ======
-
-git config --global user.email "antoniolottivillar@gmail.com"
-
-git config --global user.name "AntoLotti"
-
-# ====== Herramientas de Desarrollo ======
-echo -e "${GREEN}Instalando make========================================${NC}"
+# ====== Dev Tools =============
+echo -e "${GREEN}========== Installing Make =============${NC}"
 sudo apt install make -y
 
-echo -e "${GREEN}Instalando cmake=======================================${NC}"
+echo -e "${GREEN}========== Installing  CMake ===========${NC}"
 sudo apt install cmake -y
 
-echo -e "${GREEN}Instalando gcc=========================================${NC}"
+echo -e "${GREEN}========== Installing  Gcc =============${NC}"
 sudo apt-get install gcc -y
 
-echo -e "${GREEN}Instalando GDB=========================================${NC}"
+echo -e "${GREEN}========== Installing  GDB =============${NC}"
 sudo apt install gdb gdb-arm-none-eabi -y
 
-echo -e "${GREEN}Instalando OpenOCD=====================================${NC}"
+echo -e "${GREEN}========== Installing  Opencd ==========${NC}"
 sudo apt install openocd -y
 
-echo -e "${GREEN}Instalando Putty=======================================${NC}"
+echo -e "${GREEN}========== Installing  Putty ===========${NC}"
 sudo apt install putty -y
 
-echo -e "${GREEN}Instalando Doxygen=====================================${NC}"
+echo -e "${GREEN}========== Installing  Doxygen =========${NC}"
 sudo apt install doxygen -y
 
-echo -e "${GREEN}Instalando Valgrind====================================${NC}"
-#sudo apt install valgrind -y
+echo -e "${GREEN}========== Installing  Valgrind ========${NC}"
+sudo apt install valgrind -y
 
 
 # ====== Fin del Script ======

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Colores para el terminal
+# Terminal Colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # Sin color
@@ -8,7 +8,7 @@ NC='\033[0m' # Sin color
 # ====== Start Of Script ======
 echo -e "${GREEN}===================== INSTALLING PACKAGES ================================${NC}"
 
-# ====== Basics Packages ======
+# ====== Packages Managers ====
 echo -e "${GREEN}========== Installing Snap =============${NC}"
 sudo apt-get install snap -y
 
@@ -41,9 +41,30 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# localizador de paquetes huerfanos
-echo -e "${GREEN}========== Installing Deborphan ========${NC}"
-sudo apt install deborphan -y
+# ====== Basics Packages ======
+
+sudo apt-get install build-essential -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+sudo apt-get install software-properties-common -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+sudo apt-get install unzip zip tar gzip -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+sudo apt-get install vim -y
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
@@ -75,6 +96,9 @@ if [ $? -ne 0 ]; then
     echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
     exit 1
 fi
+
+
+sudo apt -y install python3-launchpadlib
 
 # ====== End Of Script ======
 echo -e "${GREEN}===================== END OF PACKAGES ====================================${NC}"
