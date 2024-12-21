@@ -62,8 +62,11 @@
 
 Manual task that I need to perform once the new distribution has been installed
 
-- [ ] install sudo
-- [ ] install dos2unix
+- [ ] Install sudo
+- [ ] Install dos2unix
+- [ ] Modify the I3 configuration file
+    - [ ] Identify the volume, brigthness and others keys in the keyboard and change   
+- [ ] Personalize Rofi
 - [ ] Add/Create a SSH Github Key into the computer
 - [ ] Add the SSH Key to Github
 - [ ] Uninstall all unnecessary apps ( if I'm not in a netinstall )

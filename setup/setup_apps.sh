@@ -26,7 +26,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo -e "${GREEN}Instalando Spotify=====================================${NC}"
-sudo snap install spotify
+sudo snap install spotify -y
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"

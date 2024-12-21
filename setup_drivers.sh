@@ -46,6 +46,10 @@ sudo apt install systemd-sysv -y
 
 sudo apt install acpi -y
 
+
+sudo apt install nvidia-driver -y
+
+
 if [ $? -ne 0 ]; then
     echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
     exit 1
@@ -88,12 +92,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# ===== REEBOOT ====================
-echo -e "${RED}===================== REEBOOTING SYSTEM =================================${NC}"
-
+# ===== END SCRIPT ==============
 echo -e "${GREEN}==========================================================================${NC}"
 echo -e "${GREEN}============================ UPDATING SYSTEM =============================${NC}"
 echo -e "${GREEN}==========================================================================${NC}"
 
+
+# ===== ASK FOR REBOOT ==========
+
+echo -e "${RED}===================== REEBOOTING SYSTEM =================================${NC}"
 sudo reboot 
 

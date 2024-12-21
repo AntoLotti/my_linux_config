@@ -10,7 +10,7 @@ echo -e "${GREEN}===================== INSTALLING PACKAGES =====================
 
 # ====== Packages Managers ====
 echo -e "${GREEN}========== Installing Snap =============${NC}"
-sudo apt-get install snap -y
+sudo apt-get install snapd -y
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
