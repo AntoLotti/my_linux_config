@@ -64,15 +64,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-sudo apt-get install vim -y
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
 
 # ====== Python ====================
+sudo apt install python3-full -y
+
 echo -e "${GREEN}========== Installing Python ===========${NC}"
 sudo apt install python3 -y
 

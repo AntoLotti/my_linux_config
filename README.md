@@ -48,8 +48,8 @@
 - file that install all the basic drivers 				--> `setup_drivers.sh`
 
 - file that install all the basic Packages				--> `setup_packages.sh`
+- file that install all visual services basics 			--> `setup_environment.sh`
 - file that install all the basic tools         		--> `setup_tools.sh`
-- file that install all visual services basics 			--> `setup_graphic.sh`
 - file that install all the basic aplications   		--> `setup_apps.sh`
 - file that setup `.config/` configuration      		--> `setup_config.sh`
 - file that setup my default customization         		--> `setup_appearance.sh`

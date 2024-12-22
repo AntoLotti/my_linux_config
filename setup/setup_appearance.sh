@@ -41,9 +41,8 @@ SRC_BASH_ALIASES_PATH=$SRC_OTHERS_PATH/.bash_aliases
 
 # ====== START OF SCRIPT ======
 
-sudo apt install xfonts-terminus
-
 # FONTS
+sudo apt install xfonts-base
 
 sudo mkdir $HOME/.local/share
 
@@ -53,9 +52,6 @@ sudo cp $SRC_FONTS/*.ttf  ~/.local/share/fonts/
 
 
 # ICONS
-
-
-# I3
 
 
 # SDDM
@@ -68,9 +64,23 @@ cp -r $SRC_THEMES/sddm/* /usr/share/sddm/themes/
 
 sudo cp $SRC_ETC_PATH/sddm.conf $DST_ETC_PATH/
 
+# I3-WM
+
+
 # ROFI
 
-# STARTSHIP
+#POLYBAR
+
+
+
+# TERMINAL PROMPT
+echo -e "${GREEN}Instalando StartShip===================================${NC}"
+sudo curl -sS https://starship.rs/install.sh | sh
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
 
 # Picom
 

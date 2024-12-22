@@ -83,14 +83,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# ====== Terminal ===============
-echo -e "${GREEN}Instalando Terminator==================================${NC}"
-sudo apt install terminator -y
+sudo apt install blueman -y
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
     exit 1
 fi
+
+
 
 # ===== END SCRIPT ==============
 echo -e "${GREEN}==========================================================================${NC}"

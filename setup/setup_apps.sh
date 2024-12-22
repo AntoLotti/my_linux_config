@@ -33,16 +33,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# ====== Prompt ========
-echo -e "${GREEN}Instalando StartShip===================================${NC}"
-sudo curl -sS https://starship.rs/install.sh | sh
 
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
-# ====== Herramientas de Terminal ======
 
 
 

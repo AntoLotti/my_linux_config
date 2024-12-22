@@ -8,6 +8,15 @@ NC='\033[0m' # Sin color
 # ====== Start Of Script ======
 echo -e "${GREEN}===================== INSTALLING GRAPHIC ================================${NC}"
 
+# TERMINAL 
+echo -e "${GREEN}========== Installing TERMINATOR =======${NC}"
+sudo apt install terminator -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
 # XORG
 echo -e "${GREEN}========== Installing XORG =============${NC}"
 sudo apt install xorg -y
@@ -41,17 +50,48 @@ fi
 # ROFI
 sudo apt install rofi -y
 
-# TO SEE THE VOLUME
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+# POLYBAR
 
 
+# BUMBLEBEE-STATUS
+sudo apt -y install bumblebee-status
 
-# TO SEE THE BRIGTH
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
 
 
-
-# BACKGROUND
+# TO SETUP BACKGROUND
 sudo apt install feh -y
 sudo apt install picom -y
+
+
+# TERMINAL 
+sudo apt install terminator -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+
+# VIM
+sudo apt-get install vim -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+
+# DUNST
+sudo apt install dunst -y
 
 # ====== End Of Script ======
 echo -e "${GREEN}===================== END OF GRAPHIC ====================================${NC}"
