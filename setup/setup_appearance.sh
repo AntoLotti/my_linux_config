@@ -69,8 +69,8 @@ sudo cp $SRC_ETC_PATH/sddm.conf $DST_ETC_PATH/
 
 # ROFI
 
-#POLYBAR
 
+#POLYBAR
 
 
 # TERMINAL PROMPT
