@@ -3,96 +3,58 @@
 # Terminal Colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
-ORGANGE=''
+BLUE='\033[0;34m'
 NC='\033[0m' # Sin color
 
+# ====== Functions ======
+install_package() {
+    local package_name=$1
+    echo -e "${BLUE}========== Installing $package_name ===========${NC}"
+    sudo apt-get install -y $package_name
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}Error installing $package_name. Aborting.${NC}"
+        exit 1
+    fi
+}
+
 # ====== Start Of Script ======
-echo -e "${GREEN}===================== INSTALLING GRAPHIC ================================${NC}"
+echo -e "${GREEN}===================== INSTALLING ENVIRONMENT =============================${NC}"
 
-# TERMINAL 
-echo -e "${GREEN}========== Installing TERMINATOR =======${NC}"
-sudo apt install terminator -y
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
+# TERMINAL
+install_package terminator
 
 # XORG
-echo -e "${GREEN}========== Installing XORG =============${NC}"
-sudo apt install xorg -y
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
+install_package xorg
 
 # SDDM
-echo -e "${GREEN}========== Installing SDDM =============${NC}"
-sudo apt-get install --no-install-recomends sddm -y
-
+sudo apt-get install --no-install-recommends sddm -y
 if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    echo -e "${RED}Error installing SDDM. Aborting.${NC}"
     exit 1
 fi
 
-# SPECTRWM
-#echo -e "${GREEN}========== Installing SpectrWM =============${NC}"
-#sudo apt-get install spectrwm -y
-
-# I3-WM
-sudo apt install i3-wm
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
+# WM
+install_package i3-wm
+# Uncomment the following line if SpectrWM is needed
+# install_package spectrwm
 
 # ROFI
-sudo apt install rofi -y
+install_package rofi
 
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
+# STATUS BAR
+install_package bumblebee-status
+# Uncomment the following line if Polybar is needed
+# install_package polybar
 
-# POLYBAR
+# BACKGROUND
+install_package feh
+install_package picom
 
-
-# BUMBLEBEE-STATUS
-sudo apt -y install bumblebee-status
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
-
-# TO SETUP BACKGROUND
-sudo apt install feh -y
-sudo apt install picom -y
-
-
-# TERMINAL 
-sudo apt install terminator -y
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
+# NOTIFICATION GESTOR
+install_package dunst
 
 # VIM
-sudo apt-get install vim -y
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
-
-# DUNST
-sudo apt install dunst -y
+install_package vim
 
 # ====== End Of Script ======
-echo -e "${GREEN}===================== END OF GRAPHIC ====================================${NC}"
+echo -e "${GREEN}===================== END OF ENVIRONMENT =================================${NC}"

@@ -35,11 +35,15 @@ install_package curl
 # BASIC PACKAGES #
 install_package build-essential
 install_package software-properties-common
+install_package ccache 
+install_package libffi-dev 
+install_package libssl-dev 
+install_package dfu-util 
+install_package libusb-1.0-0
 install_package "unzip zip tar gzip"
 install_package usbutils
 install_package udisks2
 install_package dosfstools
-install_package exfat-utils
 install_package ntfs-3g
 
 # PYTHON #

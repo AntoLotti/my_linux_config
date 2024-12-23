@@ -3,52 +3,50 @@
 # Terminal Colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
-ORGANGE=''
+BLUE='\033[0;34m'
 NC='\033[0m' # Sin color
 
-# ====== Basic Tools ===========
+# ====== Functions ======
+install_package() {
+    local package_name=$1
+    echo -e "${BLUE}========== Installing $package_name ===========${NC}"
+    sudo apt-get install -y $package_name
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}Error installing $package_name. Aborting.${NC}"
+        exit 1
+    fi
+}
 
-sudo apt-get install imagemagick -y
+# ====== Start Of Script ======
+echo -e "${GREEN}===================== INSTALLING TOOLS ===================================${NC}"
 
-sudo apt-get install graphicsmagick -y
+# GENERAL TOOLS
+install_package imagemagick
+install_package graphicsmagick
+install_package mailutils
+install_package bash-completion
+install_package "man-db manpages"
 
-sudo apt-get install mailutils -y
+# DEVELOPMENT TOOLS
+install_package git 
+install_package flex 
+install_package bison 
+install_package gperf 
+install_package ninja-build 
 
-sudo apt-get install bash-completion -y
+# INDIVIDUAL DEVELOPMENT TOOLS
+install_package make
+install_package cmake
+install_package gcc
+install_package "gdb gdb-arm-none-eabi"
+install_package openocd
+install_package putty
+install_package doxygen
+install_package valgrind
 
-sudo apt-get install man-db manpages -y
-
-echo -e "${GREEN}===== Installing Development Tools =====${NC}"
-sudo apt-get install git flex bison gperf ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0 -y
-
-# ====== Dev Tools =============
-echo -e "${GREEN}========== Installing Make =============${NC}"
-sudo apt install make -y
-
-echo -e "${GREEN}========== Installing  CMake ===========${NC}"
-sudo apt install cmake -y
-
-echo -e "${GREEN}========== Installing  Gcc =============${NC}"
-sudo apt-get install gcc -y
-
-echo -e "${GREEN}========== Installing  GDB =============${NC}"
-sudo apt install gdb gdb-arm-none-eabi -y
-
-echo -e "${GREEN}========== Installing  Opencd ==========${NC}"
-sudo apt install openocd -y
-
-echo -e "${GREEN}========== Installing  Putty ===========${NC}"
-sudo apt install putty -y
-
-echo -e "${GREEN}========== Installing  Doxygen =========${NC}"
-sudo apt install doxygen -y
-
-echo -e "${GREEN}========== Installing  Valgrind ========${NC}"
-sudo apt install valgrind -y
-
-
-# ====== Terminal Tools =============
+# TERMINALS TOOLS
 
 
-# ====== Fin del Script ======
-echo -e "${GREEN}¡Instalación completa!=================================${NC}"
+# ====== End Of Script ======
+echo -e "${GREEN}===================== END OF TOOLS =======================================${NC}"
+
