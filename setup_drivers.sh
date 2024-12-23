@@ -1,11 +1,23 @@
 #!/bin/bash
 
-# Colores para el terminal
+# Terminal Colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
+BLUE='\033[0;34m'
 NC='\033[0m' # Sin color
 
-# ====== PATHS ================
+# ====== Functions ======
+install_package() {
+    local package_name=$1
+    echo -e "${BLUE}========== Installing $package_name ===========${NC}"
+    sudo apt-get install -y $package_name
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}Error installing $package_name. Aborting.${NC}"
+        exit 1
+    fi
+}
+
+# ====== PATHS ==========
 
 # Repo Dir
 SRC_DIR_PATH=$(dirname "$0")
@@ -28,73 +40,35 @@ sudo rm $DST_SRC_PATH/sources.list
 
 sudo cp $SRC_SRC_PATH/sources.list $DST_SRC_PATH/
 
+# Brave
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
 sudo apt update && sudo apt full-upgrade -y
 
 # ====== Firmware ===============
 
-sudo apt install fwupd -y
-sudo service fwupd start -y
-sudo fwupdmgr refresh -y
-sudo fwupdmgr update -y
+install_package "fwupd"
+sudo service fwupd start
+sudo fwupdmgr refresh
+sudo fwupdmgr update
 
-sudo apt install firmware-linux -y
-sudo apt install firmware-misc-nonfree -y
-
-sudo apt install systemd-sysv -y
-
-sudo apt install acpi -y
-
-
-sudo apt install nvidia-driver -y
-
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
-sudo apt install acpid -y
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
-sudo apt install brightnessctl -y
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
-sudo apt install pulseaudio-utils -y 
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
-sudo apt install pavucontrol -y
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
-sudo apt install blueman -y
-
-if [ $? -ne 0 ]; then
-    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
-    exit 1
-fi
-
+install_package firmware-linux
+install_package firmware-misc-nonfree
+install_package systemd-sysv
+install_package acpi
+install_package nvidia-driver
+install_package acpid
+install_package brightnessctl
+install_package pulseaudio-utils
+install_package pavucontrol
+install_package blueman
 
 
 # ===== END SCRIPT ==============
 echo -e "${GREEN}==========================================================================${NC}"
 echo -e "${GREEN}============================ UPDATING SYSTEM =============================${NC}"
 echo -e "${GREEN}==========================================================================${NC}"
-
 
 # ===== ASK FOR REBOOT ==========
 
