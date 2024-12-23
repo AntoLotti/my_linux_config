@@ -3,6 +3,7 @@
 # Terminal Colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
+ORGANGE=''
 NC='\033[0m' # Sin color
 
 # ====== Start Of Script ======

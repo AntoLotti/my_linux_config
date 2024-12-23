@@ -24,15 +24,13 @@ echo -e "${GREEN}===============================================================
 
 
 # ====== Repositories ===========
-echo -e "${GREEN}========== Adding Repositories =========${NC}"
-
 sudo rm $DST_SRC_PATH/sources.list
+
 sudo cp $SRC_SRC_PATH/sources.list $DST_SRC_PATH/
 
 sudo apt update && sudo apt full-upgrade -y
 
 # ====== Firmware ===============
-echo -e "${GREEN}===================== UPDATING FIRMWARE ==================================${NC}"
 
 sudo apt install fwupd -y
 sudo service fwupd start -y

@@ -3,6 +3,7 @@
 # Terminal Colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
+ORGANGE=''
 NC='\033[0m' # Sin color
 
 # ====== Start Of Script ======
@@ -117,8 +118,12 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-
 sudo apt -y install python3-launchpadlib
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
 
 # ====== End Of Script ======
 echo -e "${GREEN}===================== END OF PACKAGES ====================================${NC}"
