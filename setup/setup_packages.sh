@@ -64,9 +64,34 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+sudo apt install usbutils udisks2
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+sudo apt install dosfstools exfat-utils
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
+
+sudo apt install ntfs-3g
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
 
 # ====== Python ====================
 sudo apt install python3-full -y
+
+if [ $? -ne 0 ]; then
+    echo -e "${RED}Error al instalar dependencias. Aborta.${NC}"
+    exit 1
+fi
 
 echo -e "${GREEN}========== Installing Python ===========${NC}"
 sudo apt install python3 -y
