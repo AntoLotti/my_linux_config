@@ -207,6 +207,9 @@ client.placeholder      #000000 #0C0C0C #FFFFFF #8426AA   #0C0C0C
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+      height 25
+      position top
+
       # status_command i3status -c ~/.config/i3/i3status.conf
       status_command /usr/bin/bumblebee-status \
               -m pasink pasource brightness bluetooth battery date time \
@@ -224,10 +227,7 @@ bar {
         inactive_workspace #B2AF30 #222222 #888888
         urgent_workspace   #FF0052 #900000 #FFFFFF
         binding_mode       #FF0052 #900000 #FFFFFF
-        
       }
-      height 25
-      position top
 }
 
 # Gaps
@@ -239,7 +239,7 @@ smart_gaps on
 for_window [class="^.*"] border pixel 5
 
 # Wallpaper
-exec feh --bg-fill /home/hola/Pictures/wallpaper/wall.jpg
+exec feh --bg-fill /home/hola/Pictures/wallpaper/wallpaper.jpg
 
 # Polybar
 #for_window [class="Polybar"] border pixel 0

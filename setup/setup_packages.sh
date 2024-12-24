@@ -46,6 +46,12 @@ install_package udisks2
 install_package dosfstools
 install_package ntfs-3g
 
+sudp apt install --no-install-recommends qml-module-qtquick-layouts -y
+sudp apt install --no-install-recommends qml-module-qtquick-controls2 -y
+sudp apt install --no-install-recommends libqt6svg6 -y
+sudo apt install qml6-module-qtquick-controls -y
+
+
 # PYTHON #
 install_package python3-full
 install_package python3
