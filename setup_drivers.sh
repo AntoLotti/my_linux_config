@@ -20,14 +20,14 @@ install_package() {
 # ====== PATHS ==========
 
 # Repo Dir
-SRC_DIR_PATH=$(dirname "$0")
+SRC_DIR_PATH=$(dirname "$(realpath "$0")")
+echo $SRC_DIR_PATH
 
 # Repo source path
 SRC_SRC_PATH=$SRC_DIR_PATH/others
 
 # System sources.list
 DST_SRC_PATH=/etc/apt
-
 
 # ====== Start Of Script ======
 echo -e "${GREEN}==========================================================================${NC}"
