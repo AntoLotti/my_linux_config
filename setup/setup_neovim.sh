@@ -22,6 +22,8 @@ install_package() {
 # ====== Start Of Script ======
 echo -e "${GREEN}===================== INSTALLING LUNARVIM ================================${NC}"
 
+rustup update
+
 # Neovim
 install_package neovim
 
