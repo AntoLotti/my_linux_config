@@ -8,6 +8,10 @@ NC='\033[0m'
 # ====== PATHS ================
 # ====== DEPENDENCIES =========
 sudo apt-get install ninja-build gettext cmake unzip curl build-essential
+
+# Cargo 
+sudo curl https://sh.rustup.rs -sSf | sh
+
 # ====== START OF SCRIPT ======
 
 # Neovim

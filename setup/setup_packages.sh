@@ -51,6 +51,8 @@ sudp apt install --no-install-recommends qml-module-qtquick-controls2 -y
 sudp apt install --no-install-recommends libqt6svg6 -y
 sudo apt install qml6-module-qtquick-controls -y
 
+sudo apt install --no-install-recommends qml-module-qtgraphicaleffects -y  
+sudo apt install libqt5svg5
 
 # PYTHON #
 install_package python3-full
