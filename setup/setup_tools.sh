@@ -43,6 +43,7 @@ install_package openocd
 install_package putty
 install_package doxygen
 install_package valgrind
+sudo curl https://sh.rustup.rs -sSf | sh
 
 # TERMINALS TOOLS
 

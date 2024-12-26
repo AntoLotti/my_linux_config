@@ -46,6 +46,11 @@ install_package udisks2
 install_package dosfstools
 install_package ntfs-3g
 
+install_package nodejs
+install_package npm
+install_package ripgrep
+install_package gettext
+
 sudp apt install --no-install-recommends qml-module-qtquick-layouts -y
 sudp apt install --no-install-recommends qml-module-qtquick-controls2 -y
 sudp apt install --no-install-recommends libqt6svg6 -y

@@ -3,34 +3,30 @@
 # Terminal Colors
 GREEN='\033[0;32m'
 RED='\033[0;31m'
-NC='\033[0m'
+BLUE='\033[0;34m'
+NC='\033[0m' # Sin color
 
+# ====== Functions ======
+install_package() {
+    local package_name=$1
+    echo -e "${BLUE}========== Installing $package_name ===========${NC}"
+    sudo apt-get install -y $package_name
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}Error installing $package_name. Aborting.${NC}"
+        exit 1
+    fi
+}
 # ====== PATHS ================
-# ====== DEPENDENCIES =========
-sudo apt-get install ninja-build gettext cmake unzip curl build-essential
 
-# Cargo 
-sudo curl https://sh.rustup.rs -sSf | sh
 
-# ====== START OF SCRIPT ======
+# ====== Start Of Script ======
+echo -e "${GREEN}===================== INSTALLING LUNARVIM ================================${NC}"
 
 # Neovim
-echo -e "${GREEN}========== Installing  Neovim ==========${NC}"
-sudo apt install neovim -y
+install_package neovim
 
-#Lazyvim
-echo -e "${GREEN}========== Installing  LunarVim ==========${NC}"
-
-sudo apt install git
-
-sudo apt install nodejs npm
-
-curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
-
-sudo apt install ripgrep
-
+## LAZYVIM
 LV_BRANCH='release-1.4/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.4/neovim-0.9/utils/installer/install.sh)
 
-lvim +LvimUpdate +q
-
-# ====== END OF SCRIPT ========
+# ====== End Of Script ======
+echo -e "${GREEN}===================== END OF LUNARVIM ======================================${NC}"
