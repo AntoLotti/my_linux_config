@@ -60,6 +60,7 @@ install_package acpi
 install_package nvidia-driver
 install_package acpid
 install_package brightnessctl
+#alsa-utils
 install_package pulseaudio-utils
 install_package pavucontrol
 install_package blueman

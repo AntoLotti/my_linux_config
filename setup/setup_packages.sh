@@ -65,6 +65,8 @@ install_package python3
 install_package python3-pip
 install_package python3-venv
 install_package python3-launchpadlib
+install_package python3-pulsectl
+
 
 # ====== End Of Script ======
 echo -e "${GREEN}===================== END OF PACKAGES ====================================${NC}"
