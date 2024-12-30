@@ -42,7 +42,9 @@ install_package i3-wm
 install_package rofi
 
 # STATUS BAR
-install_package bumblebee-status
+install_package i3blocks
+# Uncomment the following line if bumbelbee is needed
+# install_package bumblebee-status
 # Uncomment the following line if Polybar is needed
 # install_package polybar
 
