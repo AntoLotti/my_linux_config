@@ -21,10 +21,9 @@ install_package() {
 
 # Repo Dir
 SRC_DIR_PATH=$(dirname "$(realpath "$0")")
-echo $SRC_DIR_PATH
 
 # Repo source path
-SRC_SRC_PATH=$SRC_DIR_PATH/others
+SRC_SRC_PATH=$SRC_DIR_PATH/others/sources
 
 # System sources.list
 DST_SRC_PATH=/etc/apt
@@ -39,10 +38,6 @@ echo -e "${GREEN}===============================================================
 sudo rm $DST_SRC_PATH/sources.list
 
 sudo cp $SRC_SRC_PATH/sources.list $DST_SRC_PATH/
-
-# Brave
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
 sudo apt update && sudo apt full-upgrade -y
 

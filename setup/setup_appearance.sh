@@ -20,9 +20,7 @@ install_package() {
 # ====== PATHS ================
 SRC_DIR_PATH=$(dirname "$(realpath "$0")")
 
-# Repo Config path
-SRC_ETC_PATH=$(dirname "$SRC_DIR_PATH")/etc
-# System ./config path
+# System etc path
 DST_ETC_PATH=/etc
 
 # Repo Config path
@@ -30,11 +28,14 @@ SRC_CONF_PATH=$(dirname "$SRC_DIR_PATH")/.config
 # System ./config path
 DST_CONF_PATH=$HOME/.config
 
+# Repo SDDM Files Path
+SRC_SDDM=$(dirname "$SRC_DIR_PATH")/sddm
+
 # Repo others path
 SRC_OTHERS_PATH=$(dirname "$SRC_DIR_PATH")/others
 
-# Repo source folder
-SRC_SOURCE=$(dirname "$SRC_DIR_PATH")/source
+# Repo appearance folder
+SRC_SOURCE=$(dirname "$SRC_DIR_PATH")/appearance
 # Repo fonts
 SRC_FONTS=$SRC_SOURCE/my_fonts
 # Repo icons
@@ -78,14 +79,9 @@ sudo cp -r $SRC_THEMES/sddm/* /usr/share/sddm/themes/
 
 sudo cp $SRC_ETC_PATH/sddm.conf $DST_ETC_PATH/
 
-# I3-WM
-sudo cp -r $SRC_CONF_PATH/i3 $DST_CONF_PATH/
-
-# ROFI
-
-
-# POLYBAR
-
+## .config
+sudo rm -r $DST_CONF_PATH
+sudo cp -r $SRC_CONF_PATH
 
 # PICOM
 sudo cp -r $SRC_CONF_PATH/picom $DST_CONF_PATH/

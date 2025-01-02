@@ -35,15 +35,24 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+#set $refresh_i3status killall -SIGUSR1 i3status
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+#bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id  amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
+
 
 # Use brightnessctl to adjust the brightness of the Laptop Screen
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +15%  && $refresh_i3status
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 15%- && $refresh_i3status
+#bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +15%  && $refresh_i3status
+#bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 15%- && $refresh_i3status
+
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +15% && pkill -RTMIN+1 i3blocks
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 15%- && pkill -RTMIN+1 i3blocks
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -62,7 +71,7 @@ bindsym $mod+q kill
 #bindsym $mod+d exec --no-startup-id dmenu_run
 
 # A more modern dmenu replacement is rofi:
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec rofi -show drun -show-icons
 bindsym $mod+z exec rofi -show window
 
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -210,12 +219,19 @@ bar {
       height 25
       position top
 
+     status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
+
       # status_command i3status -c ~/.config/i3/i3status.conf
-      status_command /usr/bin/bumblebee-status \
-              -m pasink pasource brightness bluetooth battery date time \
-              -p bluetooth.manager=blueman-manager \
-              -p time.format="%H:%M" \
-              -t moonlight-powerline
+      # status_command /usr/bin/bumblebee-status \
+              # -m pasink pulseout brightness bluetooth battery date time \
+              # -p pulseaudio.percent_change="5%" \
+              # -p pasink.limit="100" \
+              # -p pulseout.percent_change="10%" \
+              # -p pulseout.limit="100%" \
+              # -p brightnessctl.device_path=/sys/class/backlight/amdgpu_bl0 \
+              # -p bluetooth.manager=blueman-manager \
+              # -p time.format="%H:%M" \
+              # -t moonlight-powerline
       
       colors {
         background #584646

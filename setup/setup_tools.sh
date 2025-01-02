@@ -24,8 +24,6 @@ echo -e "${GREEN}===================== INSTALLING TOOLS ========================
 install_package imagemagick
 install_package graphicsmagick
 install_package mailutils
-install_package bash-completion
-install_package "man-db manpages"
 
 # DEVELOPMENT TOOLS
 install_package git 
@@ -46,7 +44,8 @@ install_package valgrind
 sudo curl https://sh.rustup.rs -sSf | sh
 
 # TERMINALS TOOLS
-
+install_package bash-completion
+install_package "man-db manpages"
 
 # ====== End Of Script ======
 echo -e "${GREEN}===================== END OF TOOLS =======================================${NC}"

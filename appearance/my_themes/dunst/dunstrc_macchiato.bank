@@ -103,8 +103,8 @@
     frame_width = 3
 
     # Defines color of the frame around the notification window.
-    frame_color = "#aaaaaa"
-
+	frame_color = "#8aadf4"
+	
     # Size of gap to display between notifications - requires a compositor.
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
@@ -117,8 +117,10 @@
     #  * foreground: use the same color as the foreground;
     #  * frame: use the same color as the frame;
     #  * anything else will be interpreted as a X color.
-    separator_color = frame
-
+    separator_color= frame
+	
+	highlight = "#8aadf4"
+	
     # Sort type.
     # possible values are:
     #  * id: sort by id
@@ -331,24 +333,17 @@
 
 
 [urgency_low]
-# IMPORTANT: colors have to be defined in quotation marks.
-# Otherwise the "#" and following would be interpreted as a comment.
-frame_color = "#1D918B"
-foreground = "#FFEE79"
-background = "#18191E"
-timeout = 5
+background = "#24273a"
+foreground = "#cad3f5"
 
 [urgency_normal]
-frame_color = "#D16BB7"
-foreground = "#FFEE79"
-background = "#18191E"
-timeout = 10
+background = "#24273a"
+foreground = "#cad3f5"
 
 [urgency_critical]
-frame_color = "#FC2929"
-foreground = "#FFFF00"
-background = "#18191E"
-timeout = 10
+background = "#24273a"
+foreground = "#cad3f5"
+frame_color = "#f5a97f"
 
 
 [rules]
