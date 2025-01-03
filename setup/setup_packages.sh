@@ -20,19 +20,22 @@ install_package() {
 # ====== Start Of Script ======
 echo -e "${GREEN}===================== INSTALLING PACKAGES ================================${NC}"
 
-# PACKAGES MANAGERS #
-## snap
+## PACKAGES MANAGERS #3
+# ------------------- #
+
+# snap
 install_package snapd
-## synaptic
+# synaptic
 install_package synaptic
-## faltpak
+# faltpak
 install_package flatpak
-## wget
+# wget
 install_package wget
-## curl
+# curl
 install_package curl
 
-# BASIC PACKAGES #
+# BASIC PACKAGES ##
+# --------------- #
 install_package build-essential
 install_package software-properties-common
 install_package ccache 
@@ -59,7 +62,8 @@ sudo apt install qml6-module-qtquick-controls -y
 sudo apt install --no-install-recommends qml-module-qtgraphicaleffects -y  
 sudo apt install libqt5svg5
 
-# PYTHON #
+## PYTHON ##
+# -------- #
 install_package python3-full
 install_package python3
 install_package python3-pip

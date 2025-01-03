@@ -20,19 +20,22 @@ install_package() {
 # ====== Start Of Script ======
 echo -e "${GREEN}===================== INSTALLING TOOLS ===================================${NC}"
 
-# GENERAL TOOLS
+## GENERAL TOOLS ##
+# ---------------- #
 install_package imagemagick
 install_package graphicsmagick
 install_package mailutils
 
-# DEVELOPMENT TOOLS
+## DEVELOPMENT TOOLS ##
+# ------------------- #
 install_package git 
 install_package flex 
 install_package bison 
 install_package gperf 
 install_package ninja-build 
 
-# INDIVIDUAL DEVELOPMENT TOOLS
+## INDIVIDUAL DEVELOPMENT TOOLS ##
+# ------------------------------ #
 install_package make
 install_package cmake
 install_package gcc
@@ -43,9 +46,9 @@ install_package doxygen
 install_package valgrind
 sudo curl https://sh.rustup.rs -sSf | sh
 
-# TERMINALS TOOLS
-install_package bash-completion
-install_package "man-db manpages"
+## DEVELOPMENT IDE ##
+# ----------------- #
+install_package vim
 
 # ====== End Of Script ======
 echo -e "${GREEN}===================== END OF TOOLS =======================================${NC}"

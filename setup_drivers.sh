@@ -43,10 +43,10 @@ sudo apt update && sudo apt full-upgrade -y
 
 # ====== Firmware ===============
 
-install_package "fwupd"
-sudo service fwupd start
-sudo fwupdmgr refresh
-sudo fwupdmgr update
+#install_package fwupd
+#sudo service fwupd start
+#sudo fwupdmgr refresh
+#sudo fwupdmgr update
 
 install_package firmware-linux
 install_package firmware-misc-nonfree

@@ -20,26 +20,27 @@ install_package() {
 # ====== Start Of Script ======
 echo -e "${GREEN}===================== INSTALLING ENVIRONMENT =============================${NC}"
 
-# TERMINAL
-install_package terminator
+## WINDOWS SYSTEM ##
+# ---------------- #
 
-# XORG
+# DISPLAY SERVER
 install_package xorg
 
-# SDDM
+# WINDOS MANAGER
+install_package i3-wm
+# Uncomment the following line if SpectrWM is needed
+# install_package spectrwm
+
+# DISPLAY MANAGER
 sudo apt-get install --no-install-recommends sddm -y
 if [ $? -ne 0 ]; then
     echo -e "${RED}Error installing SDDM. Aborting.${NC}"
     exit 1
 fi
 
-# WM
-install_package i3-wm
-# Uncomment the following line if SpectrWM is needed
-# install_package spectrwm
 
-# ROFI
-install_package rofi
+## DESKTOP ENVIROMENT ##
+# -------------------- #
 
 # STATUS BAR
 install_package i3blocks
@@ -48,6 +49,9 @@ install_package i3blocks
 # Uncomment the following line if Polybar is needed
 # install_package polybar
 
+# ROFI
+install_package rofi
+
 # BACKGROUND
 install_package feh
 install_package picom
@@ -55,8 +59,18 @@ install_package picom
 # NOTIFICATION GESTOR
 install_package dunst
 
-# VIM
-install_package vim
+
+## TERMINAL ENVIRONMENT ##
+# ----------------------- #
+
+# TERMINAL
+install_package terminator
+
+# TERMINALS TOOLS
+install_package bash-completion
+install_package man-db 
+install_package manpages
+install_package fzf
 
 # ====== End Of Script ======
 echo -e "${GREEN}===================== END OF ENVIRONMENT =================================${NC}"
