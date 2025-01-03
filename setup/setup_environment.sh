@@ -80,5 +80,8 @@ install_package man-db
 install_package manpages
 install_package fzf
 
+# TERMINAL PROMPT
+sudo curl -sS https://starship.rs/install.sh | s
+
 # ====== End Of Script ======
 echo -e "${GREEN}===================== END OF ENVIRONMENT =================================${NC}"

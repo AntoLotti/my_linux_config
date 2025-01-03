@@ -86,8 +86,6 @@ sudo cp -r $SRC_CONF_PATH
 # PICOM
 sudo cp -r $SRC_CONF_PATH/picom $DST_CONF_PATH/
 
-# TERMINAL PROMPT
-sudo curl -sS https://starship.rs/install.sh | sh
 
 
 # ====== END OF SCRIPT ========
