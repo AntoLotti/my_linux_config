@@ -81,7 +81,7 @@ install_package manpages
 install_package fzf
 
 # TERMINAL PROMPT
-sudo curl -sS https://starship.rs/install.sh | s
+sudo curl -sS https://starship.rs/install.sh | sh
 
 # ====== End Of Script ======
 echo -e "${GREEN}===================== END OF ENVIRONMENT =================================${NC}"

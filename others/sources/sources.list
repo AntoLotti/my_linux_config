@@ -1,9 +1,12 @@
 #deb cdrom:[Debian GNU/Linux 12.8.0 _Bookworm_ - Official amd64 NETINST with fi>
 
 # unstable repositories
-deb http://deb.debian.org/debian/ unstable  main contrib non-free non-free-firmware
-deb-src http://deb.debian.org/debian/ unstable  main contrib non-free non-free-firmware
+#deb http://deb.debian.org/debian/ unstable  main contrib non-free non-free-firmware
+#deb-src http://deb.debian.org/debian/ unstable  main contrib non-free non-free-firmware
 
+# Spain unstable repositories
+deb http://ftp.es.debian.org/debian/ unstable  main contrib non-free non-free-firmware
+deb-src http://ftp.es.debian.org/debian/ unstable  main contrib non-free non-free-firmware
 
 # Optional: Testing (for newer dependencies like libc6 >= 2.38)
 #deb http://deb.debian.org/debian testing main contrib non-free non-free-firmware
