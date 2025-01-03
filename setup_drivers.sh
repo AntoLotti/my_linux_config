@@ -6,14 +6,97 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m' # Sin color
 
+# ====== Global variables ======
+numb_Pack=0
+numb_Inst_Pack=0
+numb_Fail_Pack=0
+
+installed_packages=()
+failed_packages=()
+
 # ====== Functions ======
-install_package() {
+install_package_apt() {
     local package_name=$1
+    local recom=$2  # 1 to noy install recommendations, 0 to do it 
+
+    ((numb_Pack++))
     echo -e "${BLUE}========== Installing $package_name ===========${NC}"
-    sudo apt-get install -y $package_name
+    
+    if [ $recom  -eq 1 ]; then 
+        sudo apt-get install --no-install-recommends -y $package_name
+    else
+        sudo apt-get install -y $package_name
+    fi
+
     if [ $? -ne 0 ]; then
-        echo -e "${RED}Error installing $package_name. Aborting.${NC}"
-        exit 1
+        echo -e "${RED}Error installing $package_name.${NC}"
+        failed_packages+=($package_name)
+        ((numb_Fail_Pack++))
+    else
+        echo -e "${GREEN}Installation of $package_name correct.${NC}"
+        installed_packages+=($package_name)
+        ((numb_Inst_Pack++))
+    fi
+}
+
+install_package_curl(){
+    local url=$1
+    local output_file=$2
+
+    ((numb_Pack++))
+    echo -e "${BLUE}========== Downloading from $url ===========${NC}"
+    
+    if curl -o "$output_file" -L "$url"; then
+        echo -e "${GREEN}Downloaded successfully: $output_file.${NC}"
+        installed_packages+=("$output_file")
+        ((numb_Inst_Pack++))
+    else
+        echo -e "${RED}Error downloading from $url.${NC}"
+        failed_packages+=("$url")
+        ((numb_Fail_Pack++))
+    fi
+}
+
+install_package_snap(){
+    local package_name=$1
+
+    ((numb_Pack++))
+    echo -e "${BLUE}========== Installing $package_name with snap ===========${NC}"
+    
+    if sudo snap install "$package_name"; then
+        echo -e "${GREEN}Snap package $package_name installed successfully.${NC}"
+        installed_packages+=("$package_name")
+        ((numb_Inst_Pack++))
+    else
+        echo -e "${RED}Error installing snap package $package_name.${NC}"
+        failed_packages+=("$package_name")
+        ((numb_Fail_Pack++))
+    fi
+}
+
+resumen_fn() {
+
+    if [ $numb_Inst_Pack == $numb_Pack ]; then
+        echo -e "${GREEN}ALL PACKAGES INSTALLED"
+        echo -e "${GREEN}======================"
+        echo -e "${GREEN}PACKAGES INSTALLED:"
+        for (( i = 0; i < "${#installed_packages[@]}"; i++ )); do
+            echo -e "${GREEN}[$i] ${installed_packages[$i]}"
+        done
+    else
+        echo -e "${RED}FAILED TO INSTALL ${numb_Fail_Pack}/${numb_Pack}"
+        echo -e "${RED}======================="
+        echo -e "${GREEN}PACKAGES INSTALLED:"
+        
+        for (( i = 0; i < "${#installed_packages[@]}"; i++ )); do
+            echo -e "${GREEN}[$i] ${installed_packages[$i]}"
+        done
+
+        echo -e "${GREEN}PACKAGES MISSING:"
+        for (( i = 0; i < "${#failed_packages[@]}"; i++ )); do
+            echo -e "${RED}[$i] ${failed_packages[$i]}"
+        done
+
     fi
 }
 
@@ -43,31 +126,38 @@ sudo apt update && sudo apt full-upgrade -y
 
 # ====== Firmware ===============
 
-#install_package fwupd
-#sudo service fwupd start
-#sudo fwupdmgr refresh
-#sudo fwupdmgr update
+install_package_apt firmware-linux 
+install_package_apt firmware-misc-nonfree
+install_package_apt systemd-sysv
+install_package_apt acpi
+install_package_apt acpid
 
-install_package firmware-linux
-install_package firmware-misc-nonfree
-install_package systemd-sysv
-install_package acpi
-install_package nvidia-driver
-install_package acpid
-install_package brightnessctl
-#alsa-utils
-install_package pulseaudio-utils
-install_package pavucontrol
-install_package blueman
+vendor=$(sudo lshw -C display | awk '/vendor:/ {print $2}')
+if [[ "$vendor" == "NVIDIA" ]]; then
+    install_package_apt nvidia-driver
+fi
+
+install_package_apt brightnessctl
+install_package_apt pulseaudio-utils
+install_package_apt pavucontrol
+install_package_apt blueman
 
 
 # ===== END SCRIPT ==============
-echo -e "${GREEN}==========================================================================${NC}"
-echo -e "${GREEN}============================ UPDATING SYSTEM =============================${NC}"
-echo -e "${GREEN}==========================================================================${NC}"
+
+resumen_fn
 
 # ===== ASK FOR REBOOT ==========
 
-echo -e "${RED}===================== REEBOOTING SYSTEM =================================${NC}"
-sudo reboot 
+read -p "Do you want to reboot now? (y/n): " answer
+if [[ "$answer" == "y" || "$answer" == "Y" ]]; then
+    echo -e "${RED}===================== REEBOOTING SYSTEM =================================${NC}"
+    sudo reboot
 
+else
+
+    echo -e "${GREEN}==========================================================================${NC}"
+    echo -e "${GREEN}========================= END UPDATING SYSTEM ============================${NC}"
+    echo -e "${GREEN}==========================================================================${NC}"
+
+fi

@@ -6,14 +6,97 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m' # Sin color
 
+# ====== Global variables ======
+numb_Pack=0
+numb_Inst_Pack=0
+numb_Fail_Pack=0
+
+installed_packages=()
+failed_packages=()
+
 # ====== Functions ======
-install_package() {
+install_package_apt() {
     local package_name=$1
+    local recom=$2  # 1 to noy install recommendations, 0 to do it 
+
+    ((numb_Pack++))
     echo -e "${BLUE}========== Installing $package_name ===========${NC}"
-    sudo apt-get install -y $package_name
+    
+    if [ $recom  -eq 1 ]; then 
+        sudo apt-get install --no-install-recommends -y $package_name
+    else
+        sudo apt-get install -y $package_name
+    fi
+
     if [ $? -ne 0 ]; then
-        echo -e "${RED}Error installing $package_name. Aborting.${NC}"
-        exit 1
+        echo -e "${RED}Error installing $package_name.${NC}"
+        failed_packages+=($package_name)
+        ((numb_Fail_Pack++))
+    else
+        echo -e "${GREEN}Installation of $package_name correct.${NC}"
+        installed_packages+=($package_name)
+        ((numb_Inst_Pack++))
+    fi
+}
+
+install_package_curl(){
+    local url=$1
+    local output_file=$2
+
+    ((numb_Pack++))
+    echo -e "${BLUE}========== Downloading from $url ===========${NC}"
+    
+    if curl -o "$output_file" -L "$url"; then
+        echo -e "${GREEN}Downloaded successfully: $output_file.${NC}"
+        installed_packages+=("$output_file")
+        ((numb_Inst_Pack++))
+    else
+        echo -e "${RED}Error downloading from $url.${NC}"
+        failed_packages+=("$url")
+        ((numb_Fail_Pack++))
+    fi
+}
+
+install_package_snap(){
+    local package_name=$1
+
+    ((numb_Pack++))
+    echo -e "${BLUE}========== Installing $package_name with snap ===========${NC}"
+    
+    if sudo snap install "$package_name"; then
+        echo -e "${GREEN}Snap package $package_name installed successfully.${NC}"
+        installed_packages+=("$package_name")
+        ((numb_Inst_Pack++))
+    else
+        echo -e "${RED}Error installing snap package $package_name.${NC}"
+        failed_packages+=("$package_name")
+        ((numb_Fail_Pack++))
+    fi
+}
+
+resumen_fn() {
+
+    if [ $numb_Inst_Pack == $numb_Pack ]; then
+        echo -e "${GREEN}ALL PACKAGES INSTALLED"
+        echo -e "${GREEN}======================"
+        echo -e "${GREEN}PACKAGES INSTALLED:"
+        for (( i = 0; i < "${#installed_packages[@]}"; i++ )); do
+            echo -e "${GREEN}[$i] ${installed_packages[$i]}"
+        done
+    else
+        echo -e "${RED}FAILED TO INSTALL ${numb_Fail_Pack}/${numb_Pack}"
+        echo -e "${RED}======================="
+        echo -e "${GREEN}PACKAGES INSTALLED:"
+        
+        for (( i = 0; i < "${#installed_packages[@]}"; i++ )); do
+            echo -e "${GREEN}[$i] ${installed_packages[$i]}"
+        done
+
+        echo -e "${GREEN}PACKAGES MISSING:"
+        for (( i = 0; i < "${#failed_packages[@]}"; i++ )); do
+            echo -e "${RED}[$i] ${failed_packages[$i]}"
+        done
+
     fi
 }
 
@@ -22,34 +105,38 @@ echo -e "${GREEN}===================== INSTALLING TOOLS ========================
 
 ## GENERAL TOOLS ##
 # ---------------- #
-install_package imagemagick
-install_package graphicsmagick
-install_package mailutils
+install_package_apt imagemagick 0
+install_package_apt graphicsmagick 0
+install_package_apt mailutils 0
 
 ## DEVELOPMENT TOOLS ##
 # ------------------- #
-install_package git 
-install_package flex 
-install_package bison 
-install_package gperf 
-install_package ninja-build 
+install_package_apt git 0 
+install_package_apt flex 0
+install_package_apt bison 0 
+install_package_apt gperf 0
+install_package_apt ninja-build 0
 
 ## INDIVIDUAL DEVELOPMENT TOOLS ##
 # ------------------------------ #
-install_package make
-install_package cmake
-install_package gcc
-install_package "gdb gdb-arm-none-eabi"
-install_package openocd
-install_package putty
-install_package doxygen
-install_package valgrind
-sudo curl https://sh.rustup.rs -sSf | sh
+install_package_apt make 0
+install_package_apt cmake 0
+install_package_apt gcc 0
+install_package_apt gdb 0
+install_package_apt gdb-arm-none-eabi 0
+install_package_apt openocd 0
+install_package_apt putty 0
+install_package_apt doxygen 0
+install_package_apt valgrind 0
+install_package_curl "https://sh.rustup.rs -sSf"
 
 ## DEVELOPMENT IDE ##
 # ----------------- #
-install_package vim
+install_package_apt vim 0
 
 # ====== End Of Script ======
+
+resumen_fn
+
 echo -e "${GREEN}===================== END OF TOOLS =======================================${NC}"
 

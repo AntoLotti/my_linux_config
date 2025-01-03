@@ -26,7 +26,7 @@ install_package_apt() {
         sudo apt-get install --no-install-recommends -y $package_name
     else
         sudo apt-get install -y $package_name
-    if
+    fi
 
     if [ $? -ne 0 ]; then
         echo -e "${RED}Error installing $package_name.${NC}"
@@ -73,6 +73,34 @@ install_package_snap(){
         ((numb_Fail_Pack++))
     fi
 }
+
+resumen_fn() {
+
+    if [ $numb_Inst_Pack == $numb_Pack ]; then
+        echo -e "${GREEN}ALL PACKAGES INSTALLED"
+        echo -e "${GREEN}======================"
+        echo -e "${GREEN}PACKAGES INSTALLED:"
+        for (( i = 0; i < "${#installed_packages[@]}"; i++ )); do
+            echo -e "${GREEN}[$i] ${installed_packages[$i]}"
+        done
+    else
+        echo -e "${RED}FAILED TO INSTALL ${numb_Fail_Pack}/${numb_Pack}"
+        echo -e "${RED}======================="
+        echo -e "${GREEN}PACKAGES INSTALLED:"
+        
+        for (( i = 0; i < "${#installed_packages[@]}"; i++ )); do
+            echo -e "${GREEN}[$i] ${installed_packages[$i]}"
+        done
+
+        echo -e "${GREEN}PACKAGES MISSING:"
+        for (( i = 0; i < "${#failed_packages[@]}"; i++ )); do
+            echo -e "${RED}[$i] ${failed_packages[$i]}"
+        done
+
+    fi
+}
+
+
 # ====== Start Of Script ======
 echo -e "${GREEN}===================== INSTALLING PACKAGES ================================${NC}"
 
@@ -129,4 +157,7 @@ install_package_apt python3-pulsectl 0
 
 
 # ====== End Of Script ======
+
+resumen_fn
+
 echo -e "${GREEN}===================== END OF PACKAGES ====================================${NC}"
