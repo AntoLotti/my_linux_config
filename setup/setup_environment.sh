@@ -101,12 +101,16 @@ resumen_fn() {
 }
 
 # ====== PATHS ================
+SRC_DIR_PATH=$(dirname "$(realpath "$0")")
 
 # User home directori
 USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
 # System ./config path
 DST_CONF_PATH=$USER_HOME/.config
+
+# Repo appearance folder
+SRC_SOURCE=$(dirname "$SRC_DIR_PATH")/appearance
 
 # ====== Repositories =========
 
@@ -181,6 +185,14 @@ install_package_apt fzf 0
 
 # TERMINAL PROMPT
 install_package_curl -sS https://starship.rs/install.sh
+
+
+## MY SCRIPTS ##
+# ------------ #
+
+# I3blocks scripts
+sudo cp -r $SRC_SOURCE/bluetooth $DST_CONF_PATH/i3blocks/scripts/
+sudo cp -r $SRC_SOURCE/backlight $DST_CONF_PATH/i3blocks/scripts/
 
 # ====== End Of Script ======
 
