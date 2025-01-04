@@ -142,7 +142,8 @@ SRC_BASH_ALIASES_PATH=$SRC_OTHERS_PATH/.bash_aliases
 # ====== START OF SCRIPT ======
 echo -e "${GREEN}===================== START OF APPEARENCE ================================${NC}"
 
-# FONTS
+## FONTS ##
+# ------- #
 sudo apt install xfonts-base
 
 sudo mkdir -p $USER_HOME/.local/share
@@ -151,21 +152,25 @@ sudo mkdir -p $USER_HOME/.local/share/fonts
 
 sudo cp $SRC_FONTS/*.ttf  $USER_HOME/.local/share/fonts/
 
-# ICONS
+## ICONS ##
+# ------- #
 sudo cp $SRC_ICONS/* /usr/share/icons/
 
-# WALLPAPERS
+## WALLPAPERS ##
+# ------------ #
 sudo mkdir -p $DST_WALLPAPER
 sudo cp $SRC_WALLPAPER/* $DST_WALLPAPER
 
-# SDDM
+## SDDM ##
+# ------ #
 sudo mkdir -p /usr/share/sddm/themes
 
 sudo cp -r $SRC_THEMES/sddm/* /usr/share/sddm/themes/
 
 sudo cp $SRC_SDDM/sddm.conf $DST_ETC_PATH/
 
-## .config
+## .config ##
+# --------- #
 sudo rm -r $DST_CONF_PATH
 sudo cp -r $SRC_CONF_PATH $USER_HOME
 
