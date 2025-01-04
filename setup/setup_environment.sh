@@ -100,6 +100,14 @@ resumen_fn() {
     fi
 }
 
+# ====== PATHS ================
+
+# User home directori
+USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
+
+# System ./config path
+DST_CONF_PATH=$USER_HOME/.config
+
 # ====== Repositories =========
 
 ## Brave
@@ -136,6 +144,11 @@ fi
 
 # STATUS BAR
 install_package_apt i3blocks 0
+
+sudo mkdir $DST_CONF_PATH/i3blocks/scripts
+
+sudo git clone https://github.com/vivien/i3blocks-contrib.git $DST_CONF_PATH/i3blocks/scripts/
+
 # Uncomment the following line if bumbelbee is needed
 # install_package bumblebee-status
 # Uncomment the following line if Polybar is needed

@@ -128,6 +128,7 @@ install_package_apt openocd 0
 install_package_apt putty 0
 install_package_apt doxygen 0
 install_package_apt valgrind 0
+sudo cargo install just
 install_package_curl https://sh.rustup.rs -sSf
 
 ## DEVELOPMENT IDE ##

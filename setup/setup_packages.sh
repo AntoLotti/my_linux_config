@@ -118,6 +118,8 @@ install_package_apt flatpak 0
 install_package_apt wget 0
 # curl
 install_package_apt curl 0
+# cargo
+install_package_apt cargo 0
 
 # BASIC PACKAGES ##
 # --------------- #
@@ -145,7 +147,9 @@ install_package_apt qml-module-qtquick-layouts 1
 install_package_apt qml-module-qtquick-controls2 1
 install_package_apt qml-module-qtgraphicaleffects 1  
 install_package_apt qml6-module-qtquick-controls 0
-
+install_package_apt qt6-base-dev
+install_package_apt qt6-declarative-dev
+install_package_apt qt6-svg-dev    
 
 ## PYTHON ##
 # -------- #
