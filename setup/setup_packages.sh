@@ -7,6 +7,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # Sin color
 
 # ====== Global variables ======
+# ====== Global variables ======
 numb_Pack=0
 numb_Inst_Pack=0
 numb_Fail_Pack=0
@@ -41,12 +42,12 @@ install_package_apt() {
 
 install_package_curl(){
     local url=$1
-    local output_file=$2
+    local flag=$2
 
     ((numb_Pack++))
     echo -e "${BLUE}========== Downloading from $url ===========${NC}"
     
-    if curl -o "$output_file" -L "$url"; then
+    if curl "$url" "$flag"; then
         echo -e "${GREEN}Downloaded successfully: $output_file.${NC}"
         installed_packages+=("$output_file")
         ((numb_Inst_Pack++))
@@ -92,7 +93,7 @@ resumen_fn() {
             echo -e "${GREEN}[$i] ${installed_packages[$i]}"
         done
 
-        echo -e "${GREEN}PACKAGES MISSING:"
+        echo -e "${RED}PACKAGES MISSING:"
         for (( i = 0; i < "${#failed_packages[@]}"; i++ )); do
             echo -e "${RED}[$i] ${failed_packages[$i]}"
         done
