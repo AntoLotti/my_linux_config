@@ -149,10 +149,10 @@ sudo mkdir -p $USER_HOME/.local/share
 
 sudo mkdir -p $USER_HOME/.local/share/fonts
 
-sudo cp $SRC_FONTS/*.ttf  ~/.local/share/fonts/
+sudo cp $SRC_FONTS/*.ttf  $USER_HOME/.local/share/fonts/
 
 # ICONS
-sudo cp $SRC_FONTS/* /usr/share/icons/
+sudo cp $SRC_ICONS/* /usr/share/icons/
 
 # WALLPAPERS
 sudo mkdir -p $DST_WALLPAPER
