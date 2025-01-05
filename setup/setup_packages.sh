@@ -141,15 +141,16 @@ install_package_apt npm 0
 install_package_apt ripgrep 0
 install_package_apt gettext 0
 
-install_package_apt libqt6svg6 1
-install_package_apt libqt5svg5 1
-install_package_apt qml-module-qtquick-layouts 1
-install_package_apt qml-module-qtquick-controls2 1
-install_package_apt qml-module-qtgraphicaleffects 1  
-install_package_apt qml6-module-qtquick-controls 0
-install_package_apt qt6-base-dev
-install_package_apt qt6-declarative-dev
-install_package_apt qt6-svg-dev    
+# SDDM DEPENDENCIES ##
+# ------------------ #
+
+install_package_apt qt6-base-dev 0
+install_package_apt qt6-svg-dev 0
+install_package_apt qt6-virtualkeyboard-dev 0
+install_package_apt qt6-multimedia-dev 0
+install_package_apt qt6-declarative-dev 0
+
+
 
 ## PYTHON ##
 # -------- #

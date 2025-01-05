@@ -171,6 +171,7 @@ install_package_apt dunst 0
 # BROWSER
 install_package_apt brave-browser 0
 
+
 ## TERMINAL ENVIRONMENT ##
 # ----------------------- #
 
@@ -191,8 +192,8 @@ install_package_curl -sS https://starship.rs/install.sh
 # ------------ #
 
 # I3blocks scripts
-sudo cp -r $SRC_SOURCE/bluetooth $DST_CONF_PATH/i3blocks/scripts/
-sudo cp -r $SRC_SOURCE/backlight $DST_CONF_PATH/i3blocks/scripts/
+sudo cp -r $SRC_SOURCE/my_scripts/bluetooth $DST_CONF_PATH/i3blocks/scripts/
+sudo cp -r $SRC_SOURCE/my_scripts/backlight $DST_CONF_PATH/i3blocks/scripts/
 
 # ====== End Of Script ======
 
