@@ -113,7 +113,7 @@ sudo apt update
 echo -e "${GREEN}===================== INSTALLING APPS ====================================${NC}"
 
 install_package_apt libreoffice
-install_package_apt spotify 
+install_package_apt spotify-client
 install_package_apt neovim
 
 # ====== End Of Script ======
