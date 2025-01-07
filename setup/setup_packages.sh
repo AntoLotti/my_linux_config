@@ -126,6 +126,7 @@ install_package_apt cargo 0
 install_package_apt build-essential 0
 install_package_apt software-properties-common 0
 install_package_apt ccache 0
+install_package_apt x11-xserver-utils 0
 install_package_apt libffi-dev 0
 install_package_apt libssl-dev 0 
 install_package_apt dfu-util 0
@@ -143,7 +144,6 @@ install_package_apt gettext 0
 
 # SDDM DEPENDENCIES ##
 # ------------------ #
-
 install_package_apt qt6-base-dev 0
 install_package_apt qt6-svg-dev 0
 install_package_apt qt6-virtualkeyboard-dev 0
