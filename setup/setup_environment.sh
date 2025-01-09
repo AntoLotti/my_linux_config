@@ -187,6 +187,8 @@ install_package_apt fzf 0
 # TERMINAL PROMPT
 install_package_curl -sS https://starship.rs/install.sh
 
+# FILE MANAGER
+install_package_apt ranger 0
 
 ## MY SCRIPTS ##
 # ------------ #
@@ -194,6 +196,10 @@ install_package_curl -sS https://starship.rs/install.sh
 # I3blocks scripts
 sudo cp -r $SRC_SOURCE/my_scripts/bluetooth $DST_CONF_PATH/i3blocks/scripts/
 sudo cp -r $SRC_SOURCE/my_scripts/backlight $DST_CONF_PATH/i3blocks/scripts/
+
+# Others Scripts
+sudo cp $SRC_SOURCE/my_scripts/*.sh $DST_CONF_PATH/i3blocks/scripts/
+
 
 # ====== End Of Script ======
 
