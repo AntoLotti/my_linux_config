@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Iconos para los estados
-ICON_ON="󰂱"        # Icono cuando Bluetooth está activado y conectado
+ICON_ON=""        # Icono cuando Bluetooth está activado y conectado
+ICON_DISCONNECTED="" # Icono cuando Bluetooth está encendido pero no conectado
 ICON_OFF="󰂲"       # Icono cuando Bluetooth está apagado
-ICON_DISCONNECTED="󰂯" # Icono cuando Bluetooth está encendido pero no conectado
 
 # Obtener el estado del Bluetooth
 STATUS=$(bluetoothctl show | grep "Powered" | awk '{print $2}')

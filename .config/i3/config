@@ -215,34 +215,24 @@ bindsym $mod+r mode "resize"
 # ------------ #
 
 bar {
-      height 25
-      position top
+        position top
+        font pango:Font Awesome 12px
+        height 25
+        padding 2px 5px 2px 0px
 
-     status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
+        status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
+        
+        colors {
+                background #584646
+                statusline #D0A611
+                separator  #666666
 
-      # status_command i3status -c ~/.config/i3/i3status.conf
-      # status_command /usr/bin/bumblebee-status \
-              # -m pasink pulseout brightness bluetooth battery date time \
-              # -p pulseaudio.percent_change="5%" \
-              # -p pasink.limit="100" \
-              # -p pulseout.percent_change="10%" \
-              # -p pulseout.limit="100%" \
-              # -p brightnessctl.device_path=/sys/class/backlight/amdgpu_bl0 \
-              # -p bluetooth.manager=blueman-manager \
-              # -p time.format="%H:%M" \
-              # -t moonlight-powerline
-      
-      colors {
-        background #584646
-        statusline #D0A611
-        separator  #666666
-
-        focused_workspace  #B2AF30 #881D2E #D5CB21
-        active_workspace   #B2AF30 #222222 #D5CB21
-        inactive_workspace #B2AF30 #222222 #888888
-        urgent_workspace   #FF0052 #900000 #FFFFFF
-        binding_mode       #FF0052 #900000 #FFFFFF
-      }
+                focused_workspace  #B2AF30 #881D2E #D5CB21
+                active_workspace   #B2AF30 #222222 #D5CB21
+                inactive_workspace #B2AF30 #222222 #888888
+                urgent_workspace   #FF0052 #900000 #FFFFFF
+                binding_mode       #FF0052 #900000 #FFFFFF
+        }
 }
 
 ## Gaps ##
