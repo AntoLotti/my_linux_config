@@ -144,7 +144,8 @@ echo -e "${GREEN}===================== START OF APPEARENCE =====================
 
 ## FONTS ##
 # ------- #
-sudo apt install xfonts-base
+sudo apt install xfonts-base -y
+sudo apt install fonts-font-awesome -y
 
 sudo mkdir -p $USER_HOME/.local/share
 
