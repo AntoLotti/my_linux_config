@@ -142,6 +142,22 @@ SRC_BASH_ALIASES_PATH=$SRC_OTHERS_PATH/.bash_aliases
 # ====== START OF SCRIPT ======
 echo -e "${GREEN}===================== START OF APPEARENCE ================================${NC}"
 
+## .config ##
+# --------- #
+sudo rm -r $DST_CONF_PATH
+sudo cp -r $SRC_CONF_PATH $USER_HOME
+
+## TERMINAL PROMPT ##
+# ----------------- #
+install_package_curl -sS https://starship.rs/install.sh
+
+## STATUS BAR ##
+# ------------ #
+
+sudo mkdir -p $DST_CONF_PATH/i3blocks/scripts
+
+sudo git clone https://github.com/vivien/i3blocks-contrib.git $DST_CONF_PATH/i3blocks/scripts/
+
 ## FONTS ##
 # ------- #
 sudo apt install xfonts-base -y
@@ -166,19 +182,19 @@ sudo cp $SRC_WALLPAPER/* $DST_WALLPAPER
 # ------ #
 sudo mkdir -p /usr/share/sddm/themes
 
-sudo cp -r $SRC_THEMES/sddm/* /usr/share/sddm/themes/
+sudo git clone -b master --depth 1 https://github.com/keyitdev/sddm-astronaut-theme.git /usr/share/sddm/themes/sddm-astronaut-theme
 
-sudo cp $SRC_SDDM/sddm.conf $DST_ETC_PATH/
+sudo cp -r /usr/share/sddm/themes/sddm-astronaut-theme/Fonts/* /usr/share/fonts/
 
-## .config ##
-# --------- #
-sudo rm -r $DST_CONF_PATH
-sudo cp -r $SRC_CONF_PATH $USER_HOME
+## MY SCRIPTS ##
+# ------------ #
 
-# PICOM
-#sudo cp -r $SRC_CONF_PATH/picom $DST_CONF_PATH/
+# I3blocks scripts
+sudo cp -r $SRC_SOURCE/my_scripts/bluetooth $DST_CONF_PATH/i3blocks/scripts/
+sudo cp -r $SRC_SOURCE/my_scripts/backlight $DST_CONF_PATH/i3blocks/scripts/
 
-
+# Others Scripts
+sudo cp $SRC_SOURCE/my_scripts/*.sh $DST_CONF_PATH/i3blocks/scripts/
 
 # ====== END OF SCRIPT ========
 echo -e "${GREEN}===================== END OF APPEARENCE ==================================${NC}"

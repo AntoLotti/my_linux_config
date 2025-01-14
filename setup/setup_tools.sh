@@ -134,6 +134,16 @@ install_package_curl https://sh.rustup.rs -sSf
 ## DEVELOPMENT IDE ##
 # ----------------- #
 install_package_apt vim 0
+install_package_apt neovim 0
+
+## OFFICE AUTOMATION ##
+# ------------------- #
+install_package_apt libreoffice 0
+
+## MUSIC ##
+# ------- #
+install_package_snap spotify
+
 
 # ====== End Of Script ======
 

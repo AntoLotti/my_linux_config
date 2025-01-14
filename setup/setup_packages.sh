@@ -7,7 +7,6 @@ BLUE='\033[0;34m'
 NC='\033[0m' # Sin color
 
 # ====== Global variables ======
-# ====== Global variables ======
 numb_Pack=0
 numb_Inst_Pack=0
 numb_Fail_Pack=0
@@ -101,13 +100,18 @@ resumen_fn() {
     fi
 }
 
+# ====== PATHS ================
+SRC_DIR_PATH=$(dirname "$(realpath "$0")")
+
+# User home directori
+USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
+
 
 # ====== Start Of Script ======
 echo -e "${GREEN}===================== INSTALLING PACKAGES ================================${NC}"
 
 ## PACKAGES MANAGERS #3
 # ------------------- #
-
 # snap
 install_package_apt snapd 0
 # synaptic
@@ -121,9 +125,11 @@ install_package_apt curl 0
 # cargo
 install_package_apt cargo 0
 
+
 # BASIC PACKAGES ##
 # --------------- #
 install_package_apt build-essential 0
+install_package_apt util-linux 0
 install_package_apt software-properties-common 0
 install_package_apt ccache 0
 install_package_apt x11-xserver-utils 0
@@ -142,6 +148,7 @@ install_package_apt npm 0
 install_package_apt ripgrep 0
 install_package_apt gettext 0
 
+
 # SDDM DEPENDENCIES ##
 # ------------------ #
 install_package_apt qt6-base-dev 0
@@ -149,7 +156,6 @@ install_package_apt qt6-svg-dev 0
 install_package_apt qt6-virtualkeyboard-dev 0
 install_package_apt qt6-multimedia-dev 0
 install_package_apt qt6-declarative-dev 0
-
 
 
 ## PYTHON ##
@@ -160,6 +166,20 @@ install_package_apt python3-pip 0
 install_package_apt python3-venv 0
 install_package_apt python3-launchpadlib 0
 install_package_apt python3-pulsectl 0
+
+
+## GIT ##
+# ----- #
+sudo apt install git -y
+
+git config --global user.email "antoniolottivillar@gmail.com"
+git config --global user.name "AntoLotti"
+
+ssh-keygen -t ed25519 -C "antoniolottivillar@gmail.com"
+
+eval "$(ssh-agent -s)"
+
+ssh-add ~/.ssh/id_ed25519
 
 
 # ====== End Of Script ======

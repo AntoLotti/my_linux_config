@@ -235,6 +235,10 @@ bar {
         }
 }
 
+## Autostart ##
+# ----------- #
+exec_allways --no-startup-id pulseaudio --start
+
 ## Gaps ##
 # ------ #
 gaps outer 10
