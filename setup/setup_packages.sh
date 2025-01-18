@@ -103,6 +103,9 @@ resumen_fn() {
 # ====== PATHS ================
 SRC_DIR_PATH=$(dirname "$(realpath "$0")")
 
+# USER
+USER=$(logname)
+
 # User home directori
 USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
@@ -170,16 +173,24 @@ install_package_apt python3-pulsectl 0
 
 ## GIT ##
 # ----- #
-sudo apt install git -y
+install_package_apt git 0
 
 git config --global user.email "antoniolottivillar@gmail.com"
 git config --global user.name "AntoLotti"
 
-ssh-keygen -t ed25519 -C "antoniolottivillar@gmail.com"
+sudo mkdir $USER_HOME/.ssh
 
-eval "$(ssh-agent -s)"
+#sudo chown -R $USER:$USER $USER_HOME/.ssh
+#sudo chmod 700 $USER_HOME/.ssh
 
-ssh-add ~/.ssh/id_ed25519
+#ssh-keygen -t ed25519 -C "antoniolottivillar@gmail.com"
+
+#sudo chmod 600 $USER_HOME/.ssh/ed_25519
+#sudo chmod 600 $USER_HOME/.ssh/ed_25519.pub
+
+#eval "$(ssh-agent -s)"
+
+#ssh-add ~/.ssh/id_ed25519
 
 
 # ====== End Of Script ======

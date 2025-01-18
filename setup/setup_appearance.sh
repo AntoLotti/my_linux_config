@@ -103,6 +103,9 @@ resumen_fn() {
 # ====== PATHS ================
 SRC_DIR_PATH=$(dirname "$(realpath "$0")")
 
+# USER
+USER=$(logname)
+
 # User home directori
 USER_HOME=$(getent passwd "$SUDO_USER" | cut -d: -f6)
 
@@ -146,6 +149,8 @@ echo -e "${GREEN}===================== START OF APPEARENCE =====================
 # --------- #
 sudo rm -r $DST_CONF_PATH
 sudo cp -r $SRC_CONF_PATH $USER_HOME
+sudo chown $USER $DST_CONF_PATH
+
 
 ## TERMINAL PROMPT ##
 # ----------------- #
@@ -153,7 +158,6 @@ install_package_curl -sS https://starship.rs/install.sh
 
 ## STATUS BAR ##
 # ------------ #
-
 sudo mkdir -p $DST_CONF_PATH/i3blocks/scripts
 
 sudo git clone https://github.com/vivien/i3blocks-contrib.git $DST_CONF_PATH/i3blocks/scripts/
@@ -194,7 +198,7 @@ sudo cp -r $SRC_SOURCE/my_scripts/bluetooth $DST_CONF_PATH/i3blocks/scripts/
 sudo cp -r $SRC_SOURCE/my_scripts/backlight $DST_CONF_PATH/i3blocks/scripts/
 
 # Others Scripts
-sudo cp $SRC_SOURCE/my_scripts/*.sh $DST_CONF_PATH/i3blocks/scripts/
+sudo cp $SRC_SOURCE/my_scripts/*.sh /usr/local/bin/
 
 # ====== END OF SCRIPT ========
 echo -e "${GREEN}===================== END OF APPEARENCE ==================================${NC}"

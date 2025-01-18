@@ -168,6 +168,12 @@ install_package_apt dunst 0
 install_package_apt brave-browser 0
 
 
+## NETWORK MANAGMENT ##
+# ------------------- #
+install_package_apt network-manager 0
+install_package_apt wpasupplicant 0
+
+
 ## TERMINAL ENVIRONMENT ##
 # ----------------------- #
 
